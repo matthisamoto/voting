@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem "shoulda", :version => "2.10.3", :source => "http://rubygems.org"
-  config.gem "twilio", :version => "2.7.0", :source => "http://rubygems.org"
+  #config.gem "twilio", :version => "2.7.0", :source => "http://rubygems.org"
   config.time_zone = 'UTC'
 
   config.load_paths += %W(#{RAILS_ROOT}/app/concerns)
