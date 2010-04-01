@@ -2,11 +2,6 @@ defaults: &defaults
 
 development: &development
   <<: *defaults
-  bands:
-    - name: Grizzly Adams
-      number: 601
-    - name: Stay at Home Dads
-      number: 401
   twilio:
     sid: ACaff0c0fa2fc6f50d573f7254f199cccf
     token: 7f4f93a0bf64a96c315e224e50288f89

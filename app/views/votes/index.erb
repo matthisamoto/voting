@@ -1,0 +1,5 @@
+<ul>
+<% @candidates.each do |c| %>
+  <li><%= c.name%>: <%= c.votes.count %></li>
+<% end %>
+</ul>
