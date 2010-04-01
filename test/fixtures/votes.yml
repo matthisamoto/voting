@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  phone_number: 9194497859
+  candidate: grizzly
+
+two:
+  phone_number: 9194497859
+  candidate: dads
+
+three:
+  phone_number: 9194497859
+  candidate: dads

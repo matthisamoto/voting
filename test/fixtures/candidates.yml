@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+grizzly:
+  name: Grizzly Adams
+  code: 101
+
+dads:
+  name: Stay at Home Dads
+  code: 201
