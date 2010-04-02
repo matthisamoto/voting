@@ -12,6 +12,7 @@ class VotesControllerTest < ActionController::TestCase
     should_assign_to :vote
     should_respond_with :redirect
     should_redirect_to("the leaderboard") { votes_url }
+    should_change("the vote count", :by => 1) { Vote.count }
   end
 
   context "on POST to :sms" do
@@ -25,6 +26,7 @@ class VotesControllerTest < ActionController::TestCase
         end
         should_assign_to :vote
         should_respond_with :created
+        should_change("the vote count", :by => 1) { Vote.count }
       end
 
       context "and the user's candidate code is invalid" do

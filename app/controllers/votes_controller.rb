@@ -9,8 +9,13 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new params[:vote]
-    @vote.save
-    redirect_to votes_url
+    puts @vote.inspect
+    if @vote.save
+      redirect_to votes_url
+    else
+      index
+      render :index
+    end
   end
 
   def sms
