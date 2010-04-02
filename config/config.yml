@@ -1,11 +1,12 @@
 defaults: &defaults
-
-development: &development
-  <<: *defaults
   twilio:
     sid: ACaff0c0fa2fc6f50d573f7254f199cccf
     token: 7f4f93a0bf64a96c315e224e50288f89
     number: 4155992671
+    version: 2008-08-01
+
+development: &development
+  <<: *defaults
 
 test:
   <<: *development

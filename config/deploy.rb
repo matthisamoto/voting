@@ -16,6 +16,16 @@ namespace :remote do
   task :create_copy_dir, :roles => :app do
     run "mkdir -p #{copy_remote_dir}"
   end
+
+  desc "Restarting mod_rails with restart.txt"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
+  [:start, :stop].each do |t|
+    desc "#{t} task is a no-op with mod_rails"
+    task t, :roles => :app do ; end
+  end
 end
 
 role :web, location
