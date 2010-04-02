@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :votes, :collection => {:sms => :post, :counts => :get}
+  map.root :controller => :votes, :action => :index
 
   # The priority is based upon order of creation: first created -> highest priority.
 
