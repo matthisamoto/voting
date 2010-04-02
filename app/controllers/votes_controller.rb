@@ -29,6 +29,15 @@ class VotesController < ApplicationController
     end
   end
 
+  def counts
+    votes = Candidate.find(:all).inject({}) do |result, c|
+      result[c.id] = c.votes.count
+      result
+    end
+
+    render :json => votes.to_json
+  end
+
   def require_twilio
     redirect_to votes_url unless CONFIG['twilio']['sid'] == params[:AccountSid]
   end

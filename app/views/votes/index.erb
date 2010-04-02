@@ -1,5 +1,37 @@
-<ul>
+<table id="barchart-data" class="data">
+  <thead>
+    <th></th>
+    <th>Votes</th>
+  </thead>
+  <tbody>
 <% @candidates.each do |c| %>
-  <li><%= c.name%>: <%= c.votes.count %></li>
+  <tr id="candidate-<%= c.id %>">
+    <th class="name"><%= c.name%></th>
+    <td class="count"><%= c.votes.count %></td>
+  </tr>
 <% end %>
-</ul>
+  </tbody>
+</table>
+
+<div id="barchart"></div>
+
+<script type="text/javascript">
+  $(function() {
+    var chart = $('#barchart').barChart('#barchart-data', {width: 960, height: 700});
+    chart.draw();
+
+    setInterval(function() {
+      $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: '/votes/counts',
+        success: function(data) {
+          $.each(data, function(key, value) {
+            $("#candidate-" + key + " .count").html(value);
+          });
+          chart.redraw();
+        }
+      });
+    }, 5000);
+  });
+</script>
