@@ -1,7 +1,7 @@
 require 'twiliolib'
 
 class VotesController < ApplicationController
-  before_filter :require_twilio, :only => :create_via_sms
+  before_filter :require_twilio, :only => :sms
 
   def index
     @candidates = Candidate.find :all
