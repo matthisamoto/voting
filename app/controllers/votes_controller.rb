@@ -1,7 +1,7 @@
 require 'twiliolib'
 
 class VotesController < ApplicationController
-  before_filter :allow_twilio, :only => :create_via_sms
+  before_filter :require_twilio, :only => :create_via_sms
 
   def index
     @candidates = Candidate.find :all
@@ -24,7 +24,7 @@ class VotesController < ApplicationController
     end
   end
 
-  def allow_twilio
+  def require_twilio
     redirect_to votes_url unless CONFIG['twilio']['sid'] == params[:AccountSid]
   end
 end
