@@ -18,7 +18,6 @@ class VotesController < ApplicationController
     if @vote.save
       response = Twilio::Response.new
       response.append(Twilio::Sms.new("Thanks for voting."))
-      puts response.respond
       render :text => response.respond, :status => 201
     else
       render :text => "", :status => 400
