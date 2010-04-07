@@ -1,5 +1,3 @@
-require 'twiliolib'
-
 class VotesController < ApplicationController
   before_filter :require_twilio, :only => :sms
 
@@ -20,9 +18,7 @@ class VotesController < ApplicationController
   def sms
     @vote = SmsVote.new :phone_number => params[:From], :message => params[:Body]
     if @vote.save
-      response = Twilio::Response.new
-      response.append(Twilio::Sms.new("Thanks for voting."))
-      render :xml => "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>#{response.respond}", :status => 200
+      render :xml => Twilio::Verb.sms("Thanks for voting."), :status => 200
     else
       render :text => "", :status => 400
     end
