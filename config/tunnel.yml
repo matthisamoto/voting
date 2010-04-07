@@ -1,0 +1,5 @@
+development:
+  public_host_username: deploy
+  public_host: 174.143.146.148
+  public_port: 8868
+  local_port: 3000
