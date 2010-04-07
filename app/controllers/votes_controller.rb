@@ -9,7 +9,6 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new params[:vote]
-    puts @vote.inspect
     if @vote.save
       redirect_to votes_url
     else
@@ -19,7 +18,7 @@ class VotesController < ApplicationController
   end
 
   def sms
-    @vote = Vote.new :phone_number => params[:From], :message => params[:Body]
+    @vote = SmsVote.new :phone_number => params[:From], :message => params[:Body]
     if @vote.save
       response = Twilio::Response.new
       response.append(Twilio::Sms.new("Thanks for voting."))

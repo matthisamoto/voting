@@ -25,7 +25,7 @@ class VotesControllerTest < ActionController::TestCase
                  :Body => "I'd like to vote for #{candidates(:grizzly).code}" } 
         end
         should_assign_to :vote
-        should_respond_with :created
+        should_respond_with 200
         should_change("the vote count", :by => 1) { Vote.count }
       end
 
