@@ -9,11 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100401145511) do
+ActiveRecord::Schema.define(:version => 20100408210815) do
 
   create_table "candidates", :force => true do |t|
     t.integer  "code"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "directives", :force => true do |t|
+    t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
