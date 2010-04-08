@@ -1,9 +1,14 @@
-<div id="barchart">
+<div id="header">
+  <div id="info"><span class="number"><span>Text Your Vote to</span> 919.295.0966</span></div>
+</div>
+
+<div id="barchart" class="clearfix">
 <% @candidates.each do |c| %>
-  <div class="candidate" id="candidate-<%= c.id %>">
-    <h4 style="bottom: <%= (c.votes.count/@total_votes)*400 %>px;"><%= c.votes.count/@total_votes*100 %>%</h4>
+  <div class="candidate<%= (@candidates.index(c) == @candidates.count-1) ? " last" : "" %>" id="candidate-<%= c.id %>">
+    <span class="percentage" style="bottom: <%= (c.votes.count/@total_votes)*400 %>px;"><%= c.votes.count/@total_votes*100 %>%</span>
     <div class="bar" style="height: <%= (c.votes.count/@total_votes)*400 %>px;"></div>
-    <h2 style="top: 440px;"><%= c.name %><span class="code">#<%= c.code %></span></h2>
+    <span class="code"><span>Text</span> <%= c.code %></span>
+    <span class="name"><%= c.name %></span>
   </div>
 <% end %>
 </div>
@@ -18,9 +23,9 @@
         success: function(data) {
           var total = data["total"];
           $.each(data["candidates"], function(key, value) {
-            $("#candidate-" + key + " h4").html(Math.round((value/total*100)*100)/100 + "%");
-            $("#candidate-" + key + " h4").css({ bottom: (value/total*400) + "px" });
-            $("#candidate-" + key + " .bar").css({ height: (value/total)*400 + "px" });
+            $("#candidate-" + key + " .percentage").html(Math.round((value/total*100)*100)/100 + "%");
+            $("#candidate-" + key + " .percentage").css({ bottom: (value/total*600) + "px" });
+            $("#candidate-" + key + " .bar").css({ height: (value/total)*600 + "px" });
           });
         }
       });
