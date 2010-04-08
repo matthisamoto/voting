@@ -1,1 +1,13 @@
+body { font: 62.5%/1.8 Helvetica, Arial, sans-serif; }
+
 #barchart { width: 960px; height: 700px; margin: 140px auto 0; }
+
+.candidate { height: 400px; width: 250px; float: left; margin-right: 50px; position: relative; }
+.candidate h3,
+.candidate h4,
+.candidate h2 { text-align: center; }
+.candidate h4 { position: absolute; bottom: 420px; width: 250px; -webkit-transition-property: bottom; -webkit-transition-duration: 1s; font-size: 600%; }
+.candidate h2 { position: absolute; width: 250px; font-size: 250%; }
+.candidate h2 .code { display: block; font-size: 250%; }
+.candidate .bar { position: absolute; bottom: 0; background-color: #ccc; width: 250px; -webkit-transition-property: height; -webkit-transition-duration: 1s; }
+

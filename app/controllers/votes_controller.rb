@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 
   def index
     @candidates = Candidate.find :all
+    @total_votes = Vote.count
   end
 
   def create
@@ -30,7 +31,7 @@ class VotesController < ApplicationController
       result
     end
 
-    render :json => votes.to_json
+    render :json => {:total => Vote.count, :candidates => votes}.to_json
   end
 
   def require_twilio

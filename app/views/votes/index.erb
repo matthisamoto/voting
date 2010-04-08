@@ -1,37 +1,29 @@
-<table id="barchart-data" class="data">
-  <thead>
-    <th></th>
-    <th>Votes</th>
-  </thead>
-  <tbody>
+<div id="barchart">
 <% @candidates.each do |c| %>
-  <tr id="candidate-<%= c.id %>">
-    <th class="name"><%= c.name%></th>
-    <td class="count"><%= c.votes.count %></td>
-  </tr>
+  <div class="candidate" id="candidate-<%= c.id %>">
+    <h4 style="bottom: <%= (c.votes.count/@total_votes)*400 %>px;"><%= c.votes.count/@total_votes*100 %>%</h4>
+    <div class="bar" style="height: <%= (c.votes.count/@total_votes)*400 %>px;"></div>
+    <h2 style="top: 440px;"><%= c.name %><span class="code">#<%= c.code %></span></h2>
+  </div>
 <% end %>
-  </tbody>
-</table>
-
-<div id="barchart"></div>
+</div>
 
 <script type="text/javascript">
   $(function() {
-    var chart = $('#barchart').barChart('#barchart-data', {width: 960, height: 700});
-    chart.draw();
-
     setInterval(function() {
       $.ajax({
         type: 'GET',
         dataType: 'json',
         url: '/votes/counts',
         success: function(data) {
-          $.each(data, function(key, value) {
-            $("#candidate-" + key + " .count").html(value);
+          var total = data["total"];
+          $.each(data["candidates"], function(key, value) {
+            $("#candidate-" + key + " h4").html(Math.round((value/total*100)) + "%");
+            $("#candidate-" + key + " h4").css({ bottom: (value/total*400) + "px" });
+            $("#candidate-" + key + " .bar").css({ height: (value/total)*400 + "px" });
           });
-          chart.redraw();
         }
       });
-    }, 5000);
+    }, 3000);
   });
 </script>
