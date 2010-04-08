@@ -5,8 +5,8 @@
 <div id="barchart" class="clearfix">
 <% @candidates.each do |c| %>
   <div class="candidate<%= (@candidates.index(c) == @candidates.count-1) ? " last" : "" %>" id="candidate-<%= c.id %>">
-    <span class="percentage" style="bottom: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*400 : 0 %>px;"><%= @total_votes != 0 ? c.votes.count/@total_votes*100 : 0 %>%</span>
-    <div class="bar" style="height: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*400 : 0 %>px;"></div>
+    <span class="percentage" style="bottom: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*600 : 0 %>px;"><%= @total_votes != 0 ? c.votes.count/@total_votes*100 : 0 %>%</span>
+    <div class="bar" style="height: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*600 : 0 %>px;"></div>
     <span class="code"><span>Text</span> <%= c.code %></span>
     <span class="name"><%= c.name %></span>
   </div>
