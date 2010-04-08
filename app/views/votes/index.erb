@@ -18,7 +18,7 @@
         success: function(data) {
           var total = data["total"];
           $.each(data["candidates"], function(key, value) {
-            $("#candidate-" + key + " h4").html(Math.round((value/total*100)) + "%");
+            $("#candidate-" + key + " h4").html(Math.round((value/total*100)*100)/100 + "%");
             $("#candidate-" + key + " h4").css({ bottom: (value/total*400) + "px" });
             $("#candidate-" + key + " .bar").css({ height: (value/total)*400 + "px" });
           });
