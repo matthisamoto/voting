@@ -13,6 +13,8 @@ class Directive < ActiveRecord::Base
 
   def self.can_vote?
     last = find :last
+    return false if !last
+
     if last.instruction == "start"
       return true if (Time.now - last.created_at).round / 60 <= 15
     elsif last.instruction == "stop"
