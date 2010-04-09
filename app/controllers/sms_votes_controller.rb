@@ -18,7 +18,7 @@ class SmsVotesController < ApplicationController
   def vote
     @last_dir = Directive.find :last
     @vote = SmsVote.new :phone_number => params[:From], :message => params[:Body]
-    if (@last_dir.text =~ /start/i && @last_dir.text !=~ /stop/i) && @vote.save
+    if @vote.save
       render :xml => Twilio::Verb.sms("Thanks for voting."), :status => 200
     else
       render :text => "", :status => 400
