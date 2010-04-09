@@ -6,7 +6,7 @@ class SmsVotesControllerTest < ActionController::TestCase
       context "and the user's candidate code is valid" do
         setup do
           @data = { :AccountSid => CONFIG['twilio']['sid'], 
-                     :From => '9194497849', 
+                     :From => '9194497859', 
                      :Body => "I'd like to vote for #{candidates(:grizzly).code}" }
         end
         
@@ -35,7 +35,7 @@ class SmsVotesControllerTest < ActionController::TestCase
         setup do
           post :create, 
                { :AccountSid => CONFIG['twilio']['sid'], 
-                 :From => '9194497849', 
+                 :From => '9194497859', 
                  :Body => "I'd like to vote for #{88}" } 
         end
         should_assign_to :vote
@@ -47,7 +47,7 @@ class SmsVotesControllerTest < ActionController::TestCase
       setup do
         post :create, 
              { :AccountSid => "stnahesuhaosuh",
-               :From => '9194497849', 
+               :From => '9194497859', 
                :Body => "I'd like to vote for #{candidates(:grizzly).code}" } 
       end
       should_respond_with :redirect
