@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20100408210815) do
   end
 
   create_table "directives", :force => true do |t|
-    t.string   "text"
+    t.string   "instruction"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

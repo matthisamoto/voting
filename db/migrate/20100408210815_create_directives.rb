@@ -1,7 +1,7 @@
 class CreateDirectives < ActiveRecord::Migration
   def self.up
     create_table :directives do |t|
-      t.string :text
+      t.string :instruction
       t.timestamps
     end
   end

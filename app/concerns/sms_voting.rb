@@ -3,16 +3,6 @@ module SmsVoting
     base.extend Validations
   end
 
-  def message
-    @message
-  end
-
-  def message=(str)
-    @message = str
-    cand = Candidate.find(:all).detect { |c| c if c.code_in?(str) }
-    self.candidate = cand if cand
-  end
-
   module Validations
     def validates_candidate_presence_in(*attributes)
       validates_each(attributes) do |record, attr, value|
