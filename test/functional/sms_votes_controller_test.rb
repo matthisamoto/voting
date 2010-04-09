@@ -4,16 +4,15 @@ class SmsVotesControllerTest < ActionController::TestCase
   context "on POST to :create" do
     context "and the request is providing the correct AccountSid" do
       context "and the user's candidate code is valid" do
+        
         setup do
-          @data = { :AccountSid => CONFIG['twilio']['sid'], 
-                     :From => '9194497859', 
-                     :Body => "I'd like to vote for #{candidates(:grizzly).code}" }
+          @common = { :AccountSid => CONFIG['twilio']['sid'], :From => '9194497859' }
         end
         
         context "and voting is turned on" do
           setup do
             Directive.create :message => "start"
-            post :create, @data
+            post :create, {:Body => "I'd like to vote for #{candidates(:grizzly).code}"}.merge(@common)
           end
           should_assign_to :vote
           should_respond_with 200
@@ -23,10 +22,20 @@ class SmsVotesControllerTest < ActionController::TestCase
         context "and voting is turned off" do
           setup do
             Directive.create :message => "stop"
-            post :create, @data
+            post :create, {:Body => "I'd like to vote for #{candidates(:grizzly).code}"}.merge(@common)
           end
 
           should_respond_with 400
+        end
+        
+        context "and the user is passing an admin directive" do
+          setup do 
+            post :create, {:Body => "start"}.merge(@common)
+          end
+
+          should_assign_to :directive
+          should_respond_with 200
+          should_change("the directive count", :by => 1) { Directive.count }
         end
 
       end
