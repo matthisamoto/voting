@@ -16,7 +16,16 @@ class SmsVotesController < ApplicationController
   private
   
   def require_twilio
-    redirect_to votes_url unless CONFIG['twilio']['sid'] == params[:AccountSid]
+    data = request.url
+    data << request.request_parameters.sort { |a,b| a[0].to_s <=> b[0].to_s }.inject("") do |result, p|
+      result << p[0].to_s + p[1]
+      result
+    end
+
+    digest = OpenSSL::Digest::Digest.new("sha1")
+    expected = Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["sid"], data)).strip
+    
+    redirect_to votes_url unless request.headers["X-Twilio-Signature"] == expected
   end
 
   def vote

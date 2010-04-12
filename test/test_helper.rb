@@ -35,4 +35,19 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  def twilio_signature(action, params)
+    sorted = params.sort { |a,b| a[0].to_s <=> b[0].to_s }
+
+    p_str = sorted.inject([]) { |result, p| result << CGI.escape(p[0].to_s) + "=" + CGI.escape(p[1]) }.join("&")
+
+    data = "http://test.host/#{action}?#{p_str}"
+    data << sorted.inject("") do |result, p|
+      result << p[0].to_s + p[1]
+      result
+    end
+
+    digest = OpenSSL::Digest::Digest.new("sha1")
+    Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["sid"], data)).strip
+  end
 end

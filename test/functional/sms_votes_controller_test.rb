@@ -2,65 +2,69 @@ require 'test_helper'
 
 class SmsVotesControllerTest < ActionController::TestCase
   context "on POST to :create" do
-    context "and the request is providing the correct AccountSid" do
-      context "and the user's candidate code is valid" do
-        
+    context "and a valid Twilio signature is provided" do
+
+      context "and voting is turned on" do
         setup do
-          @common = { :AccountSid => CONFIG['twilio']['sid'], :From => '9194497859' }
-        end
-        
-        context "and voting is turned on" do
-          setup do
-            Directive.create :message => "start"
-            post :create, {:Body => "I'd like to vote for #{candidates(:grizzly).code}"}.merge(@common)
-          end
-          should_assign_to :vote
-          should_respond_with 200
-          should_change("the vote count", :by => 1) { Vote.count }
+          Directive.create :message => "start"
+
+          data = {:Body => "I'd like to vote for #{candidates(:grizzly).code}", :From => '9194497859'}
+          @request.env["X-Twilio-Signature"] = twilio_signature "sms_votes", data
+          post :create, data 
         end
 
-        context "and voting is turned off" do
-          setup do
-            Directive.create :message => "stop"
-            post :create, {:Body => "I'd like to vote for #{candidates(:grizzly).code}"}.merge(@common)
-          end
+        should_assign_to :vote
+        should_respond_with 200
+        should_change("the vote count", :by => 1) { Vote.count }
+      end
 
-          should_respond_with 400
-        end
-        
-        context "and the user is passing an admin directive" do
-          setup do 
-            post :create, {:Body => "start"}.merge(@common)
-          end
-
-          should_assign_to :directive
-          should_respond_with 200
-          should_change("the directive count", :by => 1) { Directive.count }
+      context "and voting is turned off" do
+        setup do
+          Directive.create :message => "stop"
+          data = {:Body => "I'd like to vote for #{candidates(:grizzly).code}", :From => '9194497859'}
+          @request.env["X-Twilio-Signature"] = twilio_signature "sms_votes", data
+          post :create, data
         end
 
+        should_respond_with 400
+      end
+      
+      context "and the user is passing an admin directive" do
+        setup do 
+          data = {:Body => "start", :From => '9194497859'}
+          @request.env["X-Twilio-Signature"] = twilio_signature "sms_votes", data
+          post :create, data
+        end
+
+        should_assign_to :directive
+        should_respond_with 200
+        should_change("the directive count", :by => 1) { Directive.count }
       end
 
       context "and the user's candidate code is invalid" do
         setup do
-          post :create, 
-               { :AccountSid => CONFIG['twilio']['sid'], 
-                 :From => '9194497859', 
-                 :Body => "I'd like to vote for #{88}" } 
+          data = { :From => '9194497859', 
+                   :Body => "I'd like to vote for #{88}" }
+          @request.env["X-Twilio-Signature"] = twilio_signature "sms_votes", data
+          post :create, data
         end
         should_assign_to :vote
         should_respond_with 400
       end
+
     end
 
-    context "and the request is not providing the correct AccountSid" do
+    context "and a valid Twilio signature is not provided" do
       setup do
-        post :create, 
-             { :AccountSid => "stnahesuhaosuh",
-               :From => '9194497859', 
-               :Body => "I'd like to vote for #{candidates(:grizzly).code}" } 
+        Directive.create :message => "start"
+
+        data = {:Body => "I'd like to vote for #{candidates(:grizzly).code}", :From => '9194497859'}
+        post :create, data 
       end
-      should_respond_with :redirect
+
+      should_respond_with 302
       should_redirect_to("the leaderboard") { votes_url }
     end
+
   end
 end
