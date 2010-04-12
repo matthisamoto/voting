@@ -1,9 +1,9 @@
 class SmsVote < Vote
   include Sms
-  include SmsVoting
+  include Candidates
 
   validates_presence_of :phone_number
-  validates_candidate_presence_in :message
+  validates_candidate_code_presence_in :message
 
   def parse_message(str)
     cand = Candidate.find(:all).detect { |c| c if c.code_in?(str) }
