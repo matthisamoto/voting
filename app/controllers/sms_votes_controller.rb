@@ -3,11 +3,7 @@ class SmsVotesController < ApplicationController
 
   def create
     if CONFIG['admins'].include?(params[:From].to_i)
-      @directive = Directive.new :phone_number => params[:From], :message => params[:Body]
-      if @directive.save
-        render :xml => Twilio::Verb.sms("Command accepted."), :status => 200
-        return
-      end
+      return if directive
     end
 
     vote
@@ -26,6 +22,16 @@ class SmsVotesController < ApplicationController
     expected = Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["token"], data)).strip
     
     redirect_to votes_url unless request.headers["X-Twilio-Signature"] == expected
+  end
+
+  def directive
+    @directive = Directive.new :phone_number => params[:From], :message => params[:Body]
+    if @directive.save
+      render :xml => Twilio::Verb.sms("Command accepted."), :status => 200
+      return @directive 
+    end
+
+    nil
   end
 
   def vote
