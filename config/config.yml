@@ -6,6 +6,7 @@ defaults: &defaults
     version: 2008-08-01
   admins:
     - 9194497859
+    - 9103384984
 
 development: &development
   <<: *defaults
