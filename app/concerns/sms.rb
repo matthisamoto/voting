@@ -9,6 +9,6 @@ module Sms
   end
 
   def parse_message(str)
-    throw :no_map_routine, "#{self.class.to_s} has no mapping routine."
+    throw :no_parse_routine, "#{self.class.to_s} has no parse routine."
   end
 end
