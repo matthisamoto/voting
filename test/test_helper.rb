@@ -48,6 +48,6 @@ class ActiveSupport::TestCase
     end
 
     digest = OpenSSL::Digest::Digest.new("sha1")
-    Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["sid"], data)).strip
+    Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["token"], data)).strip
   end
 end

@@ -23,7 +23,7 @@ class SmsVotesController < ApplicationController
     end
 
     digest = OpenSSL::Digest::Digest.new("sha1")
-    expected = Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["sid"], data)).strip
+    expected = Base64.encode64(OpenSSL::HMAC.digest(digest, CONFIG["twilio"]["token"], data)).strip
     
     redirect_to votes_url unless request.headers["X-Twilio-Signature"] == expected
   end
