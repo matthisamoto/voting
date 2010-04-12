@@ -3,7 +3,7 @@ class Directive < ActiveRecord::Base
 
   validates_presence_of :instruction
 
-  def parse_message(record, str)
+  def parse_message(str)
     if str =~ /start/i
       self.instruction = "start"
     elsif str =~ /stop/i
