@@ -2,7 +2,6 @@ class SmsVote < Vote
   include Sms
   include Candidates
 
-  validates_presence_of :phone_number
   validates_candidate_code_presence_in :message
 
   def parse_message(str)

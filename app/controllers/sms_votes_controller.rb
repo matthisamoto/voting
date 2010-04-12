@@ -3,7 +3,7 @@ class SmsVotesController < ApplicationController
 
   def create
     if CONFIG['admins'].include?(params[:From].to_i)
-      @directive = Directive.new :message => params[:Body]
+      @directive = Directive.new :phone_number => params[:From], :message => params[:Body]
       if @directive.save
         render :xml => Twilio::Verb.sms("Command accepted."), :status => 200
         return

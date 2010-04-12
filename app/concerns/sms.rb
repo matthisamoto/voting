@@ -1,4 +1,8 @@
 module Sms
+  def self.included(base)
+    base.validates_presence_of :phone_number
+  end
+
   def message
     @message
   end

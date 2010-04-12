@@ -1,6 +1,7 @@
 class Directive < ActiveRecord::Base
   include Sms
 
+  validates_presence_of :phone_number
   validates_presence_of :instruction
 
   def parse_message(str)

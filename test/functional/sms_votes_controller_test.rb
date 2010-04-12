@@ -20,7 +20,7 @@ class SmsVotesControllerTest < ActionController::TestCase
 
       context "and voting is turned off" do
         setup do
-          Directive.create :message => "stop"
+          Directive.create :phone_number => "9194497859", :message => "stop"
           data = {:Body => "I'd like to vote for #{candidates(:grizzly).code}", :From => '9194497859'}
           @request.env["X-Twilio-Signature"] = twilio_signature "sms_votes", data
           post :create, data
