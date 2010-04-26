@@ -14,12 +14,18 @@ class VotesController < ApplicationController
     end
   end
 
-  def counts
-    votes = Candidate.find(:all).inject({}) do |result, c|
-      result[c.id] = c.votes.count
-      result
-    end
+  def status
+    if Directive.can_vote?
+      votes = Candidate.find(:all).inject({}) do |result, c|
+        result[c.id] = c.votes.count
+        result
+      end
 
-    render :json => {:total => Vote.count, :candidates => votes}.to_json
+      remaining = 15 - ((Time.now - Directive.find(:last).created_at).round / 60)
+      
+      render :json => {:status => "on", :time_remaining => remaining, :total => Vote.count, :candidates => votes}.to_json
+    else
+      render :json => {:status => "off"}.to_json
+    end
   end
 end
