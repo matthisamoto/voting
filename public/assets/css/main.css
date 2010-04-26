@@ -6,7 +6,7 @@ body { background-color: #f0ecd4; font: 62.5%/1.4 Helvetica, Arial, sans-serif; 
 #info .number { font-size: 900%; font-weight: bold; }
 #info .number span { font-size: 50%; text-transform: uppercase; font-weight: normal; opacity: 0.6; margin-bottom: -20px; display: block; }
 
-#number { width: 1920px; height: 1080px; position: absolute; top: 0; left: 50%; margin-left: -960px; display: none; }
+#number { width: 1920px; height: 1080px; position: absolute; top: 0; left: 50%; z-index: 1000; margin-left: -960px; }
 
 #time-remaining { position: absolute; top: 40px; right: 75px; text-align: center; font-size: 1100%; font-weight: bold; width: 110px; display: block; }
 
