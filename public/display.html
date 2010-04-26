@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+  <title></title> 
+  <link rel="shortcut icon" href="/favicon.ico" /> 
+  <link href="assets/css/reset.css" type="text/css" media="screen" rel="stylesheet" /> 
+  <link href="assets/css/display.css" type="text/css" media="screen" rel="stylesheet" /> 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js" type="text/javascript"></script> 
+  <script src="assets/js/jquery.cycle.all.min.js" type="text/javascript"></script> 
+</head> 
+<body>
+
+<ul id="slides">
+  <li class="fast"><img src="assets/images/counting_cros/1.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/counting_cros/2.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/counting_cros/3.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/counting_cros/4.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/counting_cros/5.jpg" alt="" /></li>
+  <li><img src="assets/images/counting_cros/6.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/counting_cros/7.jpg" alt="" /></li>
+
+  <li class="fast"><img src="assets/images/role_playaz/1.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/role_playaz/2.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/role_playaz/3.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/role_playaz/4.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/role_playaz/5.jpg" alt="" /></li>
+  <li><img src="assets/images/role_playaz/6.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/role_playaz/7.jpg" alt="" /></li>
+
+  <li class="fast"><img src="assets/images/shades_of_gray/1.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/shades_of_gray/2.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/shades_of_gray/3.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/shades_of_gray/4.jpg" alt="" /></li>
+  <li class="fast"><img src="assets/images/shades_of_gray/5.jpg" alt="" /></li>
+  <li><img src="assets/images/shades_of_gray/6.jpg" alt="" /></li>
+  <li><img src="assets/images/shades_of_gray/7.jpg" alt="" /></li>
+
+  <li><img src="assets/images/sponsors/1sponsors_McKinney.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/2sponsors_ATC.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/3sponsors_CBC.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/4sponsors_BurtsBees.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/5sponsors_HeraldSun.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/6sponsors_TrailBlazer.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/7sponsors_DurhamMag.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/8sponsors_GSK.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/9sponsors_Elevation.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/10sponsors_SportsMEDIA.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/11sponsors_BCBS.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/12sponsors_TWC.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/13sponsors_Fairway.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/15sponsors_Alliance.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/16sponsors_Eurosport.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/17sponsors_Twiggs.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/18sponsors_Redhat.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/19sponsors_ScientificProperties.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/20sponsors_GVS.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/21sponsors_RalMetroMag.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/22sponsors_DeepSouth.jpg" alt="" /></li>
+  <li><img src="assets/images/sponsors/23sponsors_Duke.jpg" alt="" /></li>
+</ul>
+
+<script type="text/javascript">
+$(function() {
+  $("#slides").cycle({fx: "none", timeout: 3000, timeoutFn: function(currSlideElement, nextSlideElement, options, forwardFlag) {
+    if ($(currSlideElement).hasClass("fast")) {
+      return 100;
+    } else {
+      return 3000;
+    }
+  }, speed: 100});
+});
+</script>
+</body>
+</html>
