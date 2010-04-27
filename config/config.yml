@@ -7,6 +7,7 @@ defaults: &defaults
   admins:
     - 9194497859
     - 9103384984
+    - 9196234097
 
 development: &development
   <<: *defaults
