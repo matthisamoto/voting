@@ -37,7 +37,7 @@ class SmsVotesController < ApplicationController
   def vote
     @vote = SmsVote.new :phone_number => params[:From], :message => params[:Body]
     if Directive.can_vote? && @vote.save
-      render :xml => Twilio::Verb.sms("Thanks for voting."), :status => 200
+      render :xml => Twilio::Verb.sms("You rock! Thanks for voting."), :status => 200
     else
       render :text => "", :status => 400
     end
