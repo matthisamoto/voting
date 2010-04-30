@@ -10,7 +10,7 @@
     <span class="percentage" style="bottom: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*400 : 0 %>px;"><%= @total_votes != 0 ? c.votes.count/@total_votes*100 : 0 %>%</span>
     <div class="bar" style="height: <%= @total_votes != 0 ? (c.votes.count/@total_votes)*400 : 0 %>px;"></div>
     <span class="code"><span>Text</span> <%= c.code %></span>
-    <span class="name <%= c.name.downcase.gsub(/[:_ ]/, '-') %>"><%= c.name %></span>
+    <span class="name <%= c.name.downcase.gsub(/[ _]/, '-').gsub(/[:]/, '') %>"><%= c.name %></span>
   </div>
 <% end %>
 </div>
