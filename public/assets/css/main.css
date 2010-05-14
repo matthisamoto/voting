@@ -22,7 +22,7 @@ body { background-color: #f0ecd4; font: 62.5%/1.4 Helvetica, Arial, sans-serif; 
 .counting-cros { background: url(../images/labels/CC_Quintiles_Label.png) no-repeat; }
 .augmented-reality { background: url(../images/labels/AR_SportsMEDIA_Label.png) no-repeat; }
 .role-playaz { background: url(../images/labels/RP_McKinney_Label.png) no-repeat; }
-.shades-of-blue { background: url(../images/labels/SOG_KeySource_Label.png) no-repeat; }
+.shades-of-gray { background: url(../images/labels/SOG_KeySource_Label.png) no-repeat; }
 .transmit-this-read-aid { background: url(../images/labels/TTRA_CBC_Label.png) no-repeat; }
 
 .clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
