@@ -1,4 +1,4 @@
-body { background-color: #f0ecd4; font: 62.5%/1.4 Helvetica, Arial, sans-serif; }
+body { background-color: #f0ecd4; font: 62.5%/1.4 Helvetica, Arial, sans-serif; overflow: hidden; }
 
 #barchart { width: 1750px; border-bottom: 2px solid #000; padding-left: 50px; margin: 90px auto 0; }
 #header { width: 1920px; height: 245px; margin: 0 auto; position: relative; background: url(../images/on_state.jpg) no-repeat; }
