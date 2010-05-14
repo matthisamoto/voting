@@ -19,11 +19,11 @@ body { background-color: #f0ecd4; font: 62.5%/1.4 Helvetica, Arial, sans-serif; 
 .candidate .name { position: absolute; top: 540px; width: 300px; height: 210px; font-size: 250%; color: #000; display: block; text-indent: -10000px; }
 .candidate .bar { position: absolute; bottom: 0; background-color: #64c2e5; width: 300px; -webkit-transition-property: height; -webkit-transition-duration: 1s; }
 
-.counting-cros { background: url(../images/labels/CC_Quintiles_Label.jpg) no-repeat; }
-.augmented-reality { background: url(../images/labels/AR_SportsMEDIA_Label.jpg) no-repeat; }
-.role-playaz { background: url(../images/labels/RP_McKinney_Label.jpg) no-repeat; }
-.shades-of-gray { background: url(../images/labels/SOG_KeySource_Label.jpg) no-repeat; }
-.transmit-this-read-aid { background: url(../images/labels/TTRA_CBC_Label.jpg) no-repeat; }
+.counting-cros { background: url(../images/labels/CC_Quintiles_Label.png) no-repeat; }
+.augmented-reality { background: url(../images/labels/AR_SportsMEDIA_Label.png) no-repeat; }
+.role-playaz { background: url(../images/labels/RP_McKinney_Label.png) no-repeat; }
+.shades-of-blue { background: url(../images/labels/SOG_KeySource_Label.png) no-repeat; }
+.transmit-this-read-aid { background: url(../images/labels/TTRA_CBC_Label.png) no-repeat; }
 
 .clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
 .clearfix { display:inline-block; }
